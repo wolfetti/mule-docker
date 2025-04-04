@@ -1,9 +1,10 @@
 FROM eclipse-temurin:8-jre
 
-RUN cd ~ && wget https://repository-master.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/3.9.0/mule-standalone-3.9.0.tar.gz \
-    && echo "39b773bf20702f614faf30b2ffca4716 mule-standalone-3.9.0.tar.gz" | md5sum -c
-
-RUN cd /opt && tar xvzf ~/mule-standalone-3.9.0.tar.gz && rm ~/mule-standalone-3.9.0.tar.gz && mv /opt/mule-standalone-3.9.0 /opt/mule
+RUN wget https://repository-master.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/3.9.0/mule-standalone-3.9.0.tar.gz \
+    && echo "39b773bf20702f614faf30b2ffca4716 mule-standalone-3.9.0.tar.gz" | md5sum -c \
+    && tar xvzf ./mule-standalone-3.9.0.tar.gz \
+    && rm ./mule-standalone-3.9.0.tar.gz \
+    && mv ./mule-standalone-3.9.0 /opt/mule
 
 # Define environment variables.
 ENV MULE_HOME=/opt/mule
